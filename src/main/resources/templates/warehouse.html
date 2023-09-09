@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>This is our great warehouse with tones of cargo</title>
+</head>
+<body>
+
+<p>Welcome to our restricted area. This place is for staff only! We know if you broke in, and we will kick your ass</p>
+
+<p>This is our secret information about details of cargo</p>
+
+<table>
+    <tr>
+        <th>Name:</th>
+        <th>Price:</th>
+        <th>Quantity at warehouse: </th>
+    </tr>
+    <tr>
+        <td><span th:text="${furniture.name}"></span></td>
+        <td><span th:text="${furniture.price}"></span></td>
+        <td><span th:text="${furniture.quantity}"></span> </td>
+    </tr>
+</table>
+
+</body>
+</html>

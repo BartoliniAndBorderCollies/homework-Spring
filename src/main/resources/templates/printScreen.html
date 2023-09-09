@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>This is a part where data is being print on the screen</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>Name:</th>
+        <th>Price:</th>
+    </tr>
+    <tr>
+        <td><span th:text="${furniture.name}"></span></td>
+        <td><span th:text="${furniture.price}"></span></td>
+    </tr>
+</table>
+
+<p>If you are our employee click the link below to have access to restricted data:</p>
+
+<p><a th:href="@{/show/warehouse}">Click here to log in to intranet</a>
+</p>
+
+</body>
+</html>
