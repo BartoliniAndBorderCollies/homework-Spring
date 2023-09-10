@@ -20,6 +20,11 @@ public class SpringSecurity {
                         .anyRequest()
                         .permitAll())
                 .httpBasic(Customizer.withDefaults())
+                .logout((logout) -> logout
+                                .deleteCookies("remove")
+                                .invalidateHttpSession(false)
+                                .logoutUrl("/show/warehouse/logout")
+                                .logoutSuccessUrl("/show/warehouse/logout/success"))
 
                 .build();
     }
