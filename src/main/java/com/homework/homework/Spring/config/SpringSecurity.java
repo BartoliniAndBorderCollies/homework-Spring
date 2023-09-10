@@ -22,9 +22,9 @@ public class SpringSecurity {
                 .httpBasic(Customizer.withDefaults())
                 .logout((logout) -> logout
                                 .deleteCookies("remove")
-                                .invalidateHttpSession(false)
-                                .logoutUrl("/show/warehouse/logout")
-                                .logoutSuccessUrl("/show/warehouse/logout/success"))
+                                .invalidateHttpSession(true)
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/logout/success"))
 
                 .build();
     }
