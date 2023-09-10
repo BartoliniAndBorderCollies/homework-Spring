@@ -10,6 +10,12 @@ public class PrintScreenController {
 
     Furniture furniture = new Furniture("Bed", 250.0, 200.0, 85.0, 2500, 10);
 
+
+    @GetMapping("/")
+    public String showMainPage() {
+        return "mainPage";
+    }
+
     @GetMapping("/show")
     public String show(Model model) {
 
