@@ -6,7 +6,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
 
 @Configuration
 @EnableWebSecurity
@@ -19,12 +19,7 @@ public class SpringSecurity {
                         .authenticated()
                         .anyRequest()
                         .permitAll())
-                .httpBasic(Customizer.withDefaults())
-                .logout((logout) -> logout
-                                .deleteCookies("remove")
-                                .invalidateHttpSession(true)
-                                .logoutUrl("/logout")
-                                .logoutSuccessUrl("/logout/success"))
+                .formLogin(Customizer.withDefaults())
 
                 .build();
     }
