@@ -2,6 +2,7 @@ package com.homework.homework.Spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class HomeworkSpringApplication {
@@ -9,6 +10,9 @@ public class HomeworkSpringApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HomeworkSpringApplication.class, args);
 	}
+
+
+
 //	Żeby sobie powtórzyć materiał ze Springa dotychczas, stwórz sobie od nowa projekt. Dodaj thymeleaf, spring data jpa,
 //	spring security oraz jeszcze jedną potrzebną, podstawową zależność (jaką?).
 
@@ -27,4 +31,11 @@ public class HomeworkSpringApplication {
 //
 //	Bonusowo! Sprawdź dostęp na dane endpointy za pomocą postmana. Następnie sprawdź to samo po włączeniu dostępu dla wszystkich na każdą stronę (enpoint).
 //	Czy się udało? Jakie jesteś w stanie wyciągnąć z tego wnioski?
+
+
+//	Zadanie nr 2:
+//
+//	Jako zadanie, stwórz proszę rest controller, na którym wystawisz dwa endpointy dla obiektu klasy Cryptocurrency. Standardowo, dodaj kilka pól temu obiektowi :)
+//	Jeden endpoint niech zwraca czysty obiekt, a drugi responseentity tego obiektu ze statusem ok (200).
+//	Obiekt pobierz z warstwy serwisowej (czyli na serwisie go sobie tworz/trzymaj)
 }
