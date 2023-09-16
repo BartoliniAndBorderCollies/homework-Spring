@@ -1,5 +1,8 @@
 package com.homework.homework.Spring.model;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Furniture {
 
     private String name;
@@ -8,6 +11,10 @@ public class Furniture {
     private double height;
     private double price;
     private int quantity;
+
+    public Furniture(String name) {
+        this.name = name;
+    }
 
     public Furniture(String name, double length, double width, double height, double price, int quantity) {
         this.name = name;
@@ -19,6 +26,7 @@ public class Furniture {
     }
 
     public int getQuantity() {
+        log.info(String.valueOf(quantity)); // dodany log
         return quantity;
     }
 
