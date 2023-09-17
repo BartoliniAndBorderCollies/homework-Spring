@@ -2,7 +2,9 @@ package com.homework.homework.Spring.service;
 
 import com.homework.homework.Spring.model.Task;
 import com.homework.homework.Spring.repository.TaskRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +32,10 @@ public class TaskService {
 
     public Task updateTaskToBeCompleted (Long id) {
         Optional<Task> optionalTask = taskRepository.findTaskById(id);
+        if(optionalTask.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
         Task task = optionalTask.orElseThrow(() -> new IllegalArgumentException("nie ma takiego taska" + id));
 
         task.setCompleted(true);
@@ -38,6 +44,10 @@ public class TaskService {
 
     public void deleteTask (Long id) {
         Optional<Task> optionalTask = taskRepository.findTaskById(id);
+        if(optionalTask.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
         Task task = optionalTask.orElseThrow(() -> new IllegalArgumentException("nie ma takiego taska" + id));
 
         taskRepository.delete(task);
