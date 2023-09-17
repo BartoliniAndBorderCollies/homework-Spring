@@ -1,10 +1,8 @@
 package com.homework.homework.Spring.web.rest.controllers;
 
 import com.homework.homework.Spring.model.Task;
-import com.homework.homework.Spring.repository.TaskRepository;
-import org.springframework.http.HttpStatus;
+import com.homework.homework.Spring.service.TaskService;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,42 +11,35 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class TaskController {
 
-    private TaskRepository taskRepository;
+    private TaskService taskService;
 
-    public TaskController(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
     @PostMapping("/tasks")
     public Task addTask(@RequestBody Task task) {
-        return taskRepository.save(task);
+        return taskService.addTask(task);
     }
 
     @GetMapping("/tasks")
     public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+        return taskService.getAllTasks();
     }
 
     @GetMapping("/tasks/{id}")
     public Optional<Task> getTaskById(@PathVariable("id") Long id) {
-        return taskRepository.findTaskById(id);
+        return taskService.getTaskById(id);
     }
 
     @PutMapping("/tasks/{id}")
-    public Task updateTaskToBeCompleted (@PathVariable("id") Long id) {
-        Optional<Task> optionalTask = taskRepository.findTaskById(id);
-        Task task = optionalTask.orElseThrow(() -> new IllegalArgumentException("nie ma takiego taska" + id));
-
-        task.setCompleted(true);
-        return taskRepository.save(task);
+    public Task updateTaskToBeCompleted(@PathVariable("id") Long id) {
+        return taskService.updateTaskToBeCompleted(id);
     }
 
     @DeleteMapping("/tasks/{id}")
     public void deleteTask (@PathVariable("id") Long id) {
-        Optional<Task> optionalTask = taskRepository.findTaskById(id);
-        Task task = optionalTask.orElseThrow(() -> new IllegalArgumentException("nie ma takiego taska" + id));
-
-        taskRepository.delete(task);
+        taskService.deleteTask(id);
     }
 
 //    lub:
