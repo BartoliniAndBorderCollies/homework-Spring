@@ -31,28 +31,22 @@ public class TaskService {
     }
 
     public Task updateTaskToBeCompleted (Long id) {
-        Optional<Task> optionalTask = taskRepository.findTaskById(id);
-        if(optionalTask.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-
-        Task task = optionalTask.orElseThrow(() -> new IllegalArgumentException("nie ma takiego taska" + id));
-
+        Task task = getTask(id);
         task.setCompleted(true);
         return taskRepository.save(task);
     }
 
     public void deleteTask (Long id) {
+        Task task = getTask(id);
+        taskRepository.delete(task);
+    }
+
+    private Task getTask(Long id) {
         Optional<Task> optionalTask = taskRepository.findTaskById(id);
         if(optionalTask.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
-        Task task = optionalTask.orElseThrow(() -> new IllegalArgumentException("nie ma takiego taska" + id));
-
-        taskRepository.delete(task);
+        return optionalTask.orElseThrow(() -> new IllegalArgumentException("nie ma takiego taska" + id));
     }
-
-
-
 }
