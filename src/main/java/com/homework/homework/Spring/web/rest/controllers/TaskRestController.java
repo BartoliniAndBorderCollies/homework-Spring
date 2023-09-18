@@ -4,16 +4,15 @@ import com.homework.homework.Spring.model.Task;
 import com.homework.homework.Spring.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-public class TaskController {
+public class TaskRestController {
 
-    private TaskService taskService;
+    private final TaskService taskService;
 
-    public TaskController(TaskService taskService) {
+    public TaskRestController(TaskService taskService) {
         this.taskService = taskService;
     }
 
@@ -23,7 +22,7 @@ public class TaskController {
     }
 
     @GetMapping("/tasks")
-    public List<Task> getAllTasks() {
+    public Iterable<Task> getAllTasks() {
         return taskService.getAllTasks();
     }
 
