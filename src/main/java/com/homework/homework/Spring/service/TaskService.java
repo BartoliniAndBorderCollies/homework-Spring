@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class TaskService {
 
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
@@ -22,12 +22,12 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public List<Task> getAllTasks() {
+    public Iterable<Task> getAllTasks() {
         return taskRepository.findAll();
     }
 
     public Optional<Task> getTaskById(Long id) {
-        return taskRepository.findTaskById(id);
+        return taskRepository.findById(id);
     }
 
     public Task updateTaskToBeCompleted (Long id) {
@@ -42,7 +42,7 @@ public class TaskService {
     }
 
     private Task getTask(Long id) {
-        Optional<Task> optionalTask = taskRepository.findTaskById(id);
+        Optional<Task> optionalTask = taskRepository.findById(id);
         if(optionalTask.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
