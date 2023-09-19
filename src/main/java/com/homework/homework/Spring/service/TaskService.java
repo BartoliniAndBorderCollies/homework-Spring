@@ -30,9 +30,12 @@ public class TaskService {
         return taskRepository.findById(id);
     }
 
-    public Task updateTaskToBeCompleted (Long id) {
+    public Task updateTaskToBeCompleted (Long id, Task taskToUpdate) {
         Task task = getTask(id);
-        task.setCompleted(true);
+
+        task.setTitle(taskToUpdate.getTitle());
+        task.setDescription(taskToUpdate.getDescription());
+        task.setCompleted(taskToUpdate.isCompleted());
         return taskRepository.save(task);
     }
 
@@ -44,9 +47,9 @@ public class TaskService {
     private Task getTask(Long id) {
         Optional<Task> optionalTask = taskRepository.findById(id);
         if(optionalTask.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new IllegalArgumentException("nie ma takiego taska" + id);
         }
-
+//        return optionalTask.get();
         return optionalTask.orElseThrow(() -> new IllegalArgumentException("nie ma takiego taska" + id));
     }
 }
