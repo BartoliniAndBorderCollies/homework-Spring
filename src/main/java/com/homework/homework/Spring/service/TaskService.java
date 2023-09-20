@@ -33,9 +33,9 @@ public class TaskService {
     public Task updateTaskToBeCompleted (Long id, Task taskToUpdate) {
         Task task = getTask(id);
 
-        if(taskToUpdate.getTitle() == null || taskToUpdate.getDescription() == null) {
-            throw new IllegalArgumentException("Title and Description must have values");
-        }
+//        if(taskToUpdate.getTitle() == null || taskToUpdate.getDescription() == null) {
+//            throw new IllegalArgumentException("Title and Description must have values");
+//        }
 
         task.setTitle(taskToUpdate.getTitle());
         task.setDescription(taskToUpdate.getDescription());
