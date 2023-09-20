@@ -2,6 +2,7 @@ package com.homework.homework.Spring.web.rest.controllers;
 
 import com.homework.homework.Spring.model.Task;
 import com.homework.homework.Spring.service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -35,7 +36,7 @@ public class TaskRestController {
     // zmieniać ściezkę, żeby się nie pokrywała z postem. great! i jednak wracamy do pathVariable bo nadpisuje puste
     // wartości nullem i jest utrata danych tych co byly, np. description. jesli update description bedzie pusty to
     // nadpisze i nowy obiekt bedzie pusty w tym miejscu
-    public Task updateTaskToBeCompleted(@PathVariable Long id, @RequestBody Task t) {
+    public Task updateTaskToBeCompleted(@PathVariable Long id, @Valid @RequestBody Task t) {
         return taskService.updateTaskToBeCompleted(id, t);
     }
 
